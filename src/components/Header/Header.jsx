@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Header = () => {
-  const authInfo = useContext(AuthContext);
-  console.log(authInfo.name);
+  const {user} = useContext(AuthContext);
+  console.log(user);
 
   const items = [
     <NavLink key={`login`} className="btn bg-accent" to={`/login`}>
@@ -50,7 +50,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">{authInfo.name}</a>
+        <a className="btn">{user?.email}</a>
       </div>
     </div>
   );
