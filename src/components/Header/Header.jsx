@@ -6,14 +6,23 @@ const Header = () => {
   const { user, signOutUser } = useContext(AuthContext);
   console.log(user);
 
-  const items = [
-    <NavLink key={`login`} className="btn bg-accent" to={`/login`}>
-      Login
-    </NavLink>,
-    <NavLink key={`sign-up`} className="btn bg-accent" to={`/sign-up`}>
-      Sign Up
-    </NavLink>,
-  ];
+  const items = (
+    <>
+      <NavLink key={`login`} className="btn bg-accent" to={`/login`}>
+        Login
+      </NavLink>
+      <NavLink key={`sign-up`} className="btn bg-accent" to={`/sign-up`}>
+        Sign Up
+      </NavLink>
+      {user && (
+        <>
+          <NavLink key={`orders`} className="btn bg-accent" to={`/orders`}>
+            Orders
+          </NavLink>
+        </>
+      )}
+    </>
+  );
 
   const handleSignOut = () => {
     signOutUser()
