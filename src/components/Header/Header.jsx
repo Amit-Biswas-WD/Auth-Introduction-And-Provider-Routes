@@ -19,6 +19,9 @@ const Header = () => {
           <NavLink key={`orders`} className="btn bg-accent" to={`/orders`}>
             Orders
           </NavLink>
+          <NavLink key={`profile`} className="btn bg-accent" to={`/profile`}>
+            Profile
+          </NavLink>
         </>
       )}
     </>
