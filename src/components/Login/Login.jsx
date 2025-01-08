@@ -43,9 +43,9 @@ const Login = () => {
           <div className="form-control mt-6">
             <button className="btn btn-primary text-white">Login</button>
           </div>
-          <p className="text-end my-2">
+          <p className="text-end my-2 text-white">
             Go to
-            <Link className="text-green-500 mx-2" to={`/sign-up`}>
+            <Link className="text-green-500 mx-2 font-semibold" to={`/sign-up`}>
               Sign Up
             </Link>
             Page.

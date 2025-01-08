@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+
   const handleSignUp = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -8,7 +12,17 @@ const SignUp = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     console.log(name, photo, email, password);
+
+    // create user
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log("Error", error.message);
+      });
   };
+
   return (
     <div className="hero bg-gray-500 min-h-screen">
       <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
@@ -60,26 +74,20 @@ const SignUp = () => {
               className="input input-bordered bg-gray-500"
               required
             />
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover text-white">
-                Forgot password?
-              </a>
-            </label>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary text-white">Login</button>
+            <button className="btn btn-primary text-white">Sign Up</button>
           </div>
-          <p className="text-end">
-            Go to
-            <Link className="text-green-500 mx-2" to={`/login`}>
+          <p className="text-end text-white">
+            Already have an account? Please
+            <Link className="text-green-500 mx-2 font-semibold" to={`/login`}>
               Login
             </Link>
-            Page.
           </p>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
