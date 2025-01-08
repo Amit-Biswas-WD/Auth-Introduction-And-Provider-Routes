@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Header = () => {
-  const {user} = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
   console.log(user);
 
   const items = [
@@ -14,6 +14,17 @@ const Header = () => {
       Sign Up
     </NavLink>,
   ];
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("Sign Out successfully");
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
+
   return (
     // <div className="flex gap-8 justify-center py-4">
     <div className="navbar bg-base-100">
@@ -50,7 +61,18 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">{user?.email}</a>
+        {user ? (
+          <div className="flex gap-4">
+            <a className="btn">{user?.email}</a>
+            <button className="btn bg-accent" onClick={handleSignOut}>
+              SignOut
+            </button>
+          </div>
+        ) : (
+          <Link to={`/login`} className="btn bg-accent">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
